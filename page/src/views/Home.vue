@@ -24,11 +24,95 @@
         <span class="ityped-cursor">|</span>
       </div>
     </div>
-    <div>
-      <listItem />
+    <div class="listContent">
+      <listItem  v-for="(ele, i) in arrInfo" :key="i"  :listItemContent='ele'/>
     </div>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import { setTimeout } from 'timers'
+import listItem from '@/components/listItem'
+
+export default {
+  name: 'Home',
+  data () {
+    return {
+      activeIndex: '1',
+      itypedName: 'name',
+      dataTitle: [
+        { id: 1, title: '处理中心' },
+        { id: 2, title: '作品中心' },
+        { id: 3, title: '兴趣中心' },
+        { id: 4, title: '热爱中心' }],
+      arrInfo: [
+        {
+          tagArr: ['html', 'css'],
+          title: '【干货】设计师如何零代码创建自己的作品集小程序',
+          smalltitle: '友情提示，由于下面内容包含很多外部链接，因为个人小程序是不支持直接跳转链接的，大家可以复制此文链接到',
+          datetime: '2018年5月3日',
+          srcimg: 'https://ycp.limiabc.com/wp-content/uploads/2018/10/pexels-photo-1115692-300x199.jpg'
+        },
+        {
+          tagArr: ['html', 'css'],
+          title: '【干货】设计师如何零代码创建自己的作品集小程序',
+          smalltitle: '友情提示，由于下面内容包含很多外部链接，因为个人小程序是不支持直接跳转链接的，大家可以复制此文链接到',
+          datetime: '2018年5月3日',
+          srcimg: 'https://ycp.limiabc.com/wp-content/uploads/2018/10/pexels-photo-1115692-300x199.jpg'
+        },
+        {
+          tagArr: ['html', 'css'],
+          title: '【干货】设计师如何零代码创建自己的作品集小程序',
+          smalltitle: '友情提示，由于下面内容包含很多外部链接，因为个人小程序是不支持直接跳转链接的，大家可以复制此文链接到',
+          datetime: '2018年5月3日',
+          srcimg: 'https://ycp.limiabc.com/wp-content/uploads/2018/10/pexels-photo-1115692-300x199.jpg'
+        }
+      ]
+    }
+  },
+  components: {
+    listItem
+  },
+  created () {
+  },
+  mounted () {
+    this.computeItyped('花猫难画虎，人鬼谁人知，空白皆过往，人相俩无银')
+  },
+  methods: {
+
+    handleSelect (key, keyPath) {
+      console.log(key, keyPath)
+    },
+
+    computeItyped (itypeName) {
+      var i = 0
+      var show = true
+      setInterval(() => {
+        if (show) {
+          if (i < itypeName.length) {
+            this.itypedName = itypeName.slice(0, i++)
+            // console.log(itypeName + '---')
+          } else {
+            this.itypedName = itypeName
+            setTimeout(() => {
+              show = false
+            }, 200)
+          }
+        } else {
+          if (i > 0) {
+            this.itypedName = itypeName.slice(0, i--)
+          } else {
+            this.itypedName = ''
+            show = true
+          }
+        }
+      }, 200)
+      // console.log(this.itypedName)
+    }
+  }
+}
+</script>
 
 <style scoped lang="less">
 * {
@@ -101,6 +185,14 @@
     }
   }
 }
+.listContent{
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding-bottom: 5rem;
+}
 
 @keyframes caretFlash {
   0% {
@@ -115,64 +207,3 @@
 }
 
 </style>
-
-<script>
-// @ is an alias to /src
-import { setTimeout } from 'timers'
-import listItem from '@/components/listItem'
-
-export default {
-  name: 'Home',
-  data () {
-    return {
-      activeIndex: '1',
-      itypedName: 'name',
-      dataTitle: [
-        { id: 1, title: '处理中心' },
-        { id: 2, title: '作品中心' },
-        { id: 3, title: '兴趣中心' },
-        { id: 4, title: '热爱中心' }]
-    }
-  },
-  components: {
-    listItem
-  },
-  created () {
-  },
-  mounted () {
-    this.computeItyped('花猫难画虎，人鬼谁人知，空白皆过往，人相俩无银')
-  },
-  methods: {
-
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
-    },
-
-    computeItyped (itypeName) {
-      var i = 0
-      var show = true
-      setInterval(() => {
-        if (show) {
-          if (i < itypeName.length) {
-            this.itypedName = itypeName.slice(0, i++)
-            console.log(itypeName + '---')
-          } else {
-            this.itypedName = itypeName
-            setTimeout(() => {
-              show = false
-            }, 200)
-          }
-        } else {
-          if (i > 0) {
-            this.itypedName = itypeName.slice(0, i--)
-          } else {
-            this.itypedName = ''
-            show = true
-          }
-        }
-      }, 200)
-      console.log(this.itypedName)
-    }
-  }
-}
-</script>
