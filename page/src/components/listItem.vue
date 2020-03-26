@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" >
+    <div class="listItem" >
         <img :src="listItemContent['srcimg']" class="src">
         <div class="intro">
             <h3>
@@ -36,7 +36,7 @@ export default {
 
 <style scoped lang="less">
 
-.wrapper:hover {
+.listItem:hover {
     box-shadow: 0 14px 10px -7px rgba(255, 193, 7, 0.2);
     border:#FFC107 1px solid;
     .src {
@@ -53,7 +53,7 @@ export default {
     }
 }
 
-.wrapper{
+.listItem{
     width: 50rem;
     height: 10rem;
     background:#fff;
