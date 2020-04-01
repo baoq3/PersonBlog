@@ -5,6 +5,7 @@ import Person from '../views/Person'
 import Works from '../views/Works'
 import Publish from '../views/Publish'
 import Index from '../views/index.vue'
+import Login from '../views/Login.vue'
 import store from '../store/index'
 
 Vue.use(VueRouter)
@@ -34,7 +35,7 @@ const routes = [
       name: 'Publish',
       component: Publish,
       beforeEnter: (to, from, next) => {
-        if (store.state.statePublish === 'root') {
+        if (store.state.statePublish !== '') {
           next()
         } else {
           next({ path: '/Home' })
@@ -42,10 +43,15 @@ const routes = [
       },
       meta: { title: '发布中心' }
     }]
+  }, {
+    path: '/Login',
+    name: 'Login',
+    component: Login
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

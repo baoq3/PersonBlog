@@ -23,7 +23,7 @@
         <span class="span">{{timeDate}}好</span>
       </div>
       <div v-else class="registerwrapper">
-        <a class="btn">登录</a>
+        <a class="btn" href="./Login">登录</a>
         <a class="register btn">注册</a>
       </div>
     </div>
